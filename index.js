@@ -3,14 +3,10 @@ require('dotenv').config()
 
 // Crear Express App
 const app = express();
+app.use( express.static('public'))
 
 //Rutas
-app.use( express.static('public'))
-app.get('/', (req, res) => {
-    res.json({
-        ok: true
-    })
-})
+app.use('/api/auth', require('./routes/auth'))
 
 // Escuchar en puerto 4000
 app.listen( process.env.PORT , () => {
