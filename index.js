@@ -4,6 +4,7 @@ require('dotenv').config()
 // Crear Express App
 const app = express();
 app.use( express.static('public'))
+app.use(express.json())
 
 //Rutas
 app.use('/api/auth', require('./routes/auth'))

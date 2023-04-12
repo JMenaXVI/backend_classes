@@ -1,8 +1,10 @@
 const express = require('express');
 
 const crearUsuario = (req, res = express.request) => {
-    res.json({
-        ok: true
+    const { name, email, password } = req.body
+    res.status(200).json({
+        ok: true,
+        name: name, email: email, password: password
     })
 }
 
