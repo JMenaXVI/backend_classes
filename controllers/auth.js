@@ -9,14 +9,18 @@ const crearUsuario = (req, res = express.request) => {
 }
 
 const loginUsuario = (req, res = express.request) => {
+    const { email, password } = req.body
     res.json({
-        ok: true
+        ok: true,
+        email: email, password: password
     })
 }
 
 const revalidarToken = (req, res = express.request) => {
+    const { userToken } = req.body
     res.json({
-        ok: true
+        ok: true,
+        userToken: userToken
     })
 }
 
