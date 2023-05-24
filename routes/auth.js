@@ -3,6 +3,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-token');
 
 router.post(
     '/',
@@ -12,6 +13,7 @@ router.post(
         validarCampos
     ], 
     loginUsuario);
+
 router.post(
     '/new',
     [
@@ -21,12 +23,7 @@ router.post(
         validarCampos
     ],
     crearUsuario );
-router.get(
-    '/renew', 
-    [
-        check('userToken', 'Este token es invalido.').isLength({ min: 10 }),
-        validarCampos
-    ],
-    revalidarToken);
+
+router.get('/renew', validarJWT,revalidarToken);
 
 module.exports = router;
